@@ -6,13 +6,13 @@ Additionally, you can choose from 5, 10 or unlimited points game.
 
 For playing against computer, difficulties include: easy, medium, hard, and impossible. 
 
-###Objective of the game
+### Objective of the game
 
 Both player are paddles that move with arrow keys and WASD.
 The objective is to make the other player miss the ball. One miss = one point.
 Reach the goal and you win.
 
-###Physics/mechanics
+### Physics/mechanics
 
 The ball initially starts with slow speed, but as the game continues without anyone scoring, the ball speeds up.
 The direction of ball leaving the paddle is determined from how far away from paddle's center it is hit.
