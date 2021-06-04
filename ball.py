@@ -17,7 +17,8 @@ class Ball(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (self.SCREEN_WIDTH/2, self.SCREEN_HEIGHT/2)
 
-        self.speed = 8
+        self.default_speed = 8
+        self.speed = self.default_speed
         self.x_speed = -1 * self.speed
         self.y_speed = 0
 
@@ -39,10 +40,10 @@ class Ball(pygame.sprite.Sprite):
         if self.rect.center[0] > (self.SCREEN_WIDTH/3) and self.rect.center[0] < (self.SCREEN_WIDTH*(2/3)):
             self.player_bounce = True
     
-    def new_speed(self, player_y, rally):
-        self.speed = 8 + (rally*(1/4))
+    def new_speed(self, player_y, rally, player_height, max_angle):
+        self.speed += (rally*(1/4))
         distance = self.rect.center[1] - player_y
-        angle = (55*(abs(distance))/(self.SCREEN_HEIGHT/20))
+        angle = (max_angle*(abs(distance))/(player_height/2))
         if distance == 0:
             distance = 0.01
         old_x_speed = self.x_speed
@@ -53,4 +54,4 @@ class Ball(pygame.sprite.Sprite):
         self.rect.center = (self.SCREEN_WIDTH/2, self.SCREEN_HEIGHT/2)
         self.y_speed = 0
         self.x_speed = self.speed * (self.x_speed / abs(self.x_speed))
-        self.speed = 8
+        self.speed = self.default_speed
