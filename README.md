@@ -1,5 +1,6 @@
 # Pong_python
-Made using PyGame. I also publish exe versions of this game on my [website](https://divy-07.github.io/). Check that out if you want to play it. I will only be uploading latest versions on here, though you can [play the older version](https://divy-07.github.io/games/pong/) from the website.
+Made using PyGame. I also publish exe versions of this game on my [website](https://divy-07.github.io/). Check that out if you want to play it.\
+I will only be uploading latest versions on here, though you can [play the older version](https://divy-07.github.io/games/pong/) from the website.
 
 ### Modes
 
@@ -9,7 +10,7 @@ Additionally, you can choose from 5, 10 or unlimited points game.
 There are two modes: Play, Practice.
 
 For playing against computer, difficulties include: easy, medium, hard, and impossible.
-These difficulties also apply to practice. The higher the difficulty, faster the ball, and more radically the ball returns from the wall.\
+These difficulties also apply to practice. The higher the difficulty, faster the ball, and more radically the ball returns from the wall.
 
 ### Objective of the game
 
