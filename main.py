@@ -216,7 +216,6 @@ def main(mode, goal, difficulty):
 
     # menu button
     menuButton = Button(WHITE, (SCREEN_WIDTH/2, SCREEN_HEIGHT/27), pygame.font.Font(None, int(SCREEN_HEIGHT/10)), "Menu")
-    print(menuButton.height)
 
     # rally counter
     rally = 0
