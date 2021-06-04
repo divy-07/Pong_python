@@ -10,7 +10,7 @@ Additionally, you can choose from 5, 10 or unlimited points game.
 There are two modes: Play, Practice.
 
 For playing against computer, difficulties include: easy, medium, hard, and impossible.
-These difficulties also apply to practice. The higher the difficulty, faster the ball, and more radically the ball returns from the wall.
+These difficulties also apply to practice, the higher the difficulty, faster the ball, and more radically the ball returns from the wall.
 
 ### Objective of the game
 
