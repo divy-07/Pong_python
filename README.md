@@ -4,9 +4,9 @@ Made using PyGame. I also publish exe versions of this game on my [website](http
 ### Modes
 
 The game offers single player and multiplayer option. (Multiplayer is playing on the same computer)\
-Additionally, you can choose from 5, 10 or unlimited points game.\
+Additionally, you can choose from 5, 10 or unlimited points game.
 
-There are two modes: Play, Practice.\
+There are two modes: Play, Practice.
 
 For playing against computer, difficulties include: easy, medium, hard, and impossible.
 These difficulties also apply to practice. The higher the difficulty, faster the ball, and more radically the ball returns from the wall.\
@@ -15,7 +15,7 @@ These difficulties also apply to practice. The higher the difficulty, faster the
 
 Both player are paddles that move with arrow keys and WASD.\
 The objective is to make the other player miss the ball. One miss = one point.\
-Reach the goal and you win.\
+Reach the goal and you win.
 
 ### Physics/mechanics
 
