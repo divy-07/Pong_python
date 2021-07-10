@@ -33,6 +33,16 @@ clock = pygame.time.Clock()
 background = pygame.image.load("assets/background.jpg").convert_alpha()
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
+# background music
+pygame.mixer.music.load(os.path.join("assets/background.mp3"))
+pygame.mixer.music.set_volume(0.2)
+pygame.mixer.music.play(-1)
+
+# sound effects
+click_sound = pygame.mixer.Sound("assets/click.wav")
+hit_sound = pygame.mixer.Sound("assets/hit.wav")
+wall_sound = pygame.mixer.Sound("assets/wall.wav")
+death_sound = pygame.mixer.Sound("assets/death.mp3")
 
 def intro_menu():
     intro_loop = True
@@ -96,6 +106,8 @@ def intro_menu():
             if button.hover(mouse_pos):
                 button.color = GREY
                 if mouse_buttons[0]:
+                    # click sound
+                    click_sound.play()
                     if button == playButton:
                         main(mode, goal, difficulty)
                     elif button == practiceButton:
@@ -207,10 +219,11 @@ def main(mode, goal, difficulty):
 
     # set difficulty - easy, medium, hard, impossible
     if one_player:
-        if difficulty == "impossible":
-            new_ball_y = impossible(ball)
-        else:
+        if difficulty == "easy":
             new_ball_y = SCREEN_HEIGHT/2
+        else:
+            new_ball_y = impossible(ball)
+            
 
         difficulty_text = pygame.font.Font(None, int(SCREEN_HEIGHT/15)).render("Difficulty: " + difficulty, True, WHITE)
 
@@ -258,7 +271,7 @@ def main(mode, goal, difficulty):
                     easy(new_ball_y, player_2)
 
             elif difficulty == "hard":
-                if ball.rect.x > SCREEN_WIDTH/3:
+                if ball.rect.x > SCREEN_WIDTH/2:
                     easy(ball.rect.center[1], player_2)
                 else:
                     easy(new_ball_y, player_2)
@@ -280,6 +293,7 @@ def main(mode, goal, difficulty):
         if menuButton.hover(mouse_pos):
             menuButton.color = GREY
             if mouse_buttons[0]:
+                click_sound.play()
                 time.wait(200)
                 main_loop = False
                 intro_menu()
@@ -294,6 +308,7 @@ def main(mode, goal, difficulty):
         collision = pygame.sprite.spritecollide(ball, players, False)
         for player in collision:
             if ball.player_bounce:
+                hit_sound.play()
                 ball.player_bounce = False
                 ball.wall_bounce = True
                 ball.new_speed(player.rect.center[1], rally, player.height, 55)
@@ -308,6 +323,7 @@ def main(mode, goal, difficulty):
         # score
         if ball.rect.right > SCREEN_WIDTH:
             player_2.score += 1
+            death_sound.play()
             rally = 0
             rally_text = pygame.font.Font(None, int(SCREEN_HEIGHT/10)).render("Rally: " + str(rally), True, WHITE)
             time.wait(200)
@@ -320,6 +336,7 @@ def main(mode, goal, difficulty):
         
         elif ball.rect.left < 0:
             player_1.score += 1
+            death_sound.play()
             rally = 0
             rally_text = pygame.font.Font(None, int(SCREEN_HEIGHT/10)).render("Rally: " + str(rally), True, WHITE)
             time.wait(200)
@@ -353,7 +370,7 @@ def main(mode, goal, difficulty):
         menuButton.draw(screen, BLACK, 2)
 
         # rally counter
-        if rally >= 10:
+        if rally >= 7:
             screen.blit(rally_text, ((SCREEN_WIDTH/2) - (rally_text.get_width()/2), SCREEN_HEIGHT*(9/10)))
 
         # difficulty text
@@ -442,6 +459,7 @@ def practice(goal, difficulty):
         if menuButton.hover(mouse_pos):
             menuButton.color = GREY
             if mouse_buttons[0]:
+                click_sound.play()
                 time.wait(200)
                 practice_loop = False
                 intro_menu()
@@ -454,6 +472,7 @@ def practice(goal, difficulty):
             balls.update()
             for ball in balls:
                 if ball.player_bounce and ball.rect.x <= 0:
+                    wall_sound.play()
                     ball.wall_bounce = True
                     ball.player_bounce = False
                     ball.x_speed, ball.y_speed = new_speed(ball, difficulty, rally)
@@ -462,6 +481,7 @@ def practice(goal, difficulty):
         collision = pygame.sprite.spritecollide(ball, players, False)
         for player in collision:
             if ball.player_bounce:
+                hit_sound.play()
                 ball.player_bounce = False
                 ball.wall_bounce = True
                 ball.new_speed(player.rect.center[1], rally, player.height, 55)
@@ -471,6 +491,7 @@ def practice(goal, difficulty):
         # score
         if ball.rect.right > SCREEN_WIDTH:
             player_1.score += 1
+            death_sound.play()
             rally = 0
             rally_text = pygame.font.Font(None, int(SCREEN_HEIGHT/10)).render("Rally: " + str(rally), True, WHITE)
             time.wait(200)
@@ -545,6 +566,7 @@ def gameOver(player_1_score, player_2_score, winner, player_1_name, player_2_nam
         if menuButton.hover(mouse_pos):
             menuButton.color = GREY
             if mouse_buttons[0]:
+                click_sound.play()
                 time.wait(200)
                 over_loop = False
                 intro_menu()
