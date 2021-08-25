@@ -27,4 +27,4 @@ This means more risk = more reward as angled shots are hard to hit.\
 \
 Enjoy!\
 \
-Feel free to use the code and add features using pull requests.\
+Feel free to use the code and add features using pull requests.
